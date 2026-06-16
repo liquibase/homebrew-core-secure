@@ -61,7 +61,7 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           core: true
           cask: false
@@ -167,7 +167,7 @@ jobs:
           echo upload="${DISPATCH_BUILD_BOTTLE_UPLOAD}"
 
       - name: Pre-test steps
-        uses: Homebrew/actions/pre-build@main
+        uses: Homebrew/actions/pre-build@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           bottles-directory: ${{ env.BOTTLES_DIR }}
           cleanup: ${{ matrix.cleanup }}
@@ -184,7 +184,7 @@ jobs:
 
       - name: Post-build steps
         if: always()
-        uses: Homebrew/actions/post-build@main
+        uses: Homebrew/actions/post-build@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           runner: ${{ matrix.runner }}
           cleanup: ${{ matrix.cleanup }}
@@ -213,7 +213,7 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           core: true
           cask: false
@@ -227,12 +227,12 @@ jobs:
 
       - name: Configure Git user
         id: git-user-config
-        uses: Homebrew/actions/git-user-config@main
+        uses: Homebrew/actions/git-user-config@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           username: ${{ (github.actor != 'github-actions[bot]' && github.actor) || 'BrewTestBot' }}
 
       - name: Set up commit signing
-        uses: Homebrew/actions/setup-commit-signing@main
+        uses: Homebrew/actions/setup-commit-signing@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 
@@ -259,7 +259,7 @@ jobs:
           echo "head_sha=$(git -C "$HOMEBREW_CORE_PATH" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Push commits
-        uses: Homebrew/actions/git-try-push@main
+        uses: Homebrew/actions/git-try-push@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.HOMEBREW_GITHUB_PUBLIC_REPO_TOKEN}}
           directory: ${{steps.set-up-homebrew.outputs.repository-path}}
@@ -270,7 +270,7 @@ jobs:
 
       - name: Open PR with bottle commit
         id: create-pr
-        uses: Homebrew/actions/create-pull-request@main
+        uses: Homebrew/actions/create-pull-request@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.HOMEBREW_GITHUB_PUBLIC_REPO_TOKEN}}
           base: ${{github.ref}}
@@ -348,7 +348,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Post comment on failure
-        uses: Homebrew/actions/post-comment@main
+        uses: Homebrew/actions/post-comment@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           issue: ${{inputs.issue}}

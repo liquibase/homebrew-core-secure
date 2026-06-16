@@ -26,7 +26,7 @@ jobs:
       contents: write
     steps:
       - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@main
+        uses: Homebrew/actions/git-user-config@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           username: github-actions[bot]
 

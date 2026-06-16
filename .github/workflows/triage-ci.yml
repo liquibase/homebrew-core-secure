@@ -35,7 +35,7 @@ jobs:
     env:
       COMMENT_BODY_FILE: comment.txt
     steps:
-      - uses: Homebrew/actions/find-related-workflow-run-id@main
+      - uses: Homebrew/actions/find-related-workflow-run-id@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           run-id: ${{ github.event.workflow_run.id }}
           workflow-name: Triage tasks

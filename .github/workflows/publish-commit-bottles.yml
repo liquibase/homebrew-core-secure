@@ -236,7 +236,7 @@ jobs:
 
       - name: Post comment on failure
         if: ${{!success()}}
-        uses: Homebrew/actions/post-comment@main
+        uses: Homebrew/actions/post-comment@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           issue: ${{inputs.pull_request}}
@@ -286,7 +286,7 @@ jobs:
       repository-projects: write # for `gh pr edit`
     steps:
       - name: Post comment once started
-        uses: Homebrew/actions/post-comment@main
+        uses: Homebrew/actions/post-comment@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           issue: ${{inputs.pull_request}}
@@ -302,19 +302,19 @@ jobs:
 
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           core: true
           cask: false
 
       - name: Configure Git user
         id: git-user-config
-        uses: Homebrew/actions/git-user-config@main
+        uses: Homebrew/actions/git-user-config@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           username: ${{ (github.actor != 'github-actions[bot]' && github.actor) || 'BrewTestBot' }}
 
       - name: Set up commit signing
-        uses: Homebrew/actions/setup-commit-signing@main
+        uses: Homebrew/actions/setup-commit-signing@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 
@@ -396,7 +396,7 @@ jobs:
           echo "head_sha=$(git -C "$REPO_PATH" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Push commits
-        uses: Homebrew/actions/git-try-push@main
+        uses: Homebrew/actions/git-try-push@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.HOMEBREW_GITHUB_PUBLIC_REPO_TOKEN}}
           directory: ${{steps.set-up-homebrew.outputs.repository-path}}
@@ -415,7 +415,7 @@ jobs:
 
       - name: Post comment on failure
         if: failure()
-        uses: Homebrew/actions/post-comment@main
+        uses: Homebrew/actions/post-comment@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           issue: ${{inputs.pull_request}}
@@ -495,7 +495,7 @@ jobs:
           (steps.approve.conclusion == 'failure' ||
            steps.wait-until-in-sync.conclusion == 'failure' ||
            steps.automerge.conclusion == 'failure')
-        uses: Homebrew/actions/post-comment@main
+        uses: Homebrew/actions/post-comment@d4a9d3894e99dfb50a41c089a3dfcbd6009152a1 # main
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           issue: ${{inputs.pull_request}}
